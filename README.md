@@ -50,7 +50,7 @@ _This script is not a daemon and should be run as a cron job or systemd timer an
 
 ### Systemd
 
-```toml
+```ini
 # update-dns.service
 [Unit]
 Description=Update the DNS with the new public IP.
@@ -64,7 +64,7 @@ WantedBy=multi-user.target
 
 ```
 
-```toml
+```ini
 # update-dns.timer
 [Unit]
 Description=Run the update-dns service regularly.
