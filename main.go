@@ -10,6 +10,7 @@ func main() {
 
 	ip, err := GetPublicIP()
 	if err != nil {
+		logrus.Errorln("Could not get the public IP address.")
 		panic(err)
 	}
 
@@ -23,11 +24,13 @@ func main() {
 
 	err = UpdateDNS(ip, config.Domain, config.Hostname, &config.TokenSource)
 	if err != nil {
+		logrus.Errorln("Could not update the DNS.")
 		panic(err)
 	}
 
 	err = SavePublicIP(config.IPFilePath, ip)
 	if err != nil {
+		logrus.Errorf("Could not save the public IP address to %s.", config.IPFilePath)
 		panic(err)
 	}
 	logrus.Infoln("Successfully updated the DNS record.")

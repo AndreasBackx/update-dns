@@ -19,10 +19,6 @@ func GetPublicIP() (string, error) {
 		return "", err
 	}
 
-	// Index of null character
-	// n := bytes.Index(content, []byte{0})
-	// text := string(content[:n])
-
 	return strings.TrimSpace(string(content)), nil
 }
 
