@@ -11,6 +11,8 @@ _This script is not a daemon and should be run as a cron job or systemd timer an
 
     ```javascript
     {
+        // MAKE SURE TO REMOVE THE COMMENTS FROM THIS FILE AS GO DOES NOT PARSE COMMENTS.
+        //
         // subdomain.example.com will be the A record that is created/edited.
         "domain": "example.com",
         "hostname": "subdomain",
@@ -28,22 +30,18 @@ _This script is not a daemon and should be run as a cron job or systemd timer an
 
 3. Install [packr](https://github.com/gobuffalo/packr):
     ```bash
-    go get -u github.com/gobuffalo/packr/...
+    go get -u github.com/gobuffalo/packr/packr
+    go get -u github.com/gobuffalo/packr
     ```
 
-4. Install dependencies:
+4. Create the executable and move the created executable to your server:
     ```bash
-    dep ensure
-    ```
-
-5. Create the executable and move the created executable to your server:
-    ```bash
-    go build
+    packr build
     ```
 
     Or install it on the current machine if that's the machine where it's going to be used.
     ```bash
-    go install
+    packr install
     ```
 
 ## Configuration
