@@ -1,0 +1,15 @@
+[package]
+edition = "2021"
+name = "update-dns"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.69"
+clap = {version = "4.1.6", features = ["derive"]}
+cloudflare = {git = "https://github.com/jcgruenhage/cloudflare-rs", branch = "make-owner-fields-optional"}
+public-ip = "0.2.2"
+tokio = {version = "1.25.0", features = ["full"]}
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"

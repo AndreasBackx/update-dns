@@ -4,47 +4,9 @@ A simple tool that retrieves your public IPv4 address and updates the A record o
 
 _This script is not a daemon and should be run as a cron job or systemd timer and service._
 
-## Installation
-
-1. Clone the repository.
-2. Create the folder `secret` with inside it `config.json`:
-
-    ```javascript
-    {
-        // MAKE SURE TO REMOVE THE COMMENTS FROM THIS FILE AS GO DOES NOT PARSE COMMENTS.
-        //
-        // subdomain.example.com will be the A record that is created/edited.
-        "domain": "example.com",
-        "hostname": "subdomain",
-        // Path of file where the last public IP address will be saved.
-        // Needs to be writeable, will be created if it does not exist.
-        "ip_file_path": "/home/USERNAME/last_ip",
-        "token_source": {
-            // How to Create a Personal Access Token
-            // https://www.digitalocean.com/docs/api/create-personal-access-token/
-            "access_token": "DIGITAL_OCEAN_PERSONAL_ACCESS_TOKEN"
-        }
-    }
-    ```
-
-
-3. Install [packr](https://github.com/gobuffalo/packr):
-    ```bash
-    go get -u github.com/gobuffalo/packr/packr
-    go get -u github.com/gobuffalo/packr
-    ```
-
-4. Create the executable and move the created executable to your server:
-    ```bash
-    packr build
-    ```
-
-    Or install it on the current machine if that's the machine where it's going to be used.
-    ```bash
-    packr install
-    ```
-
 ## Configuration
+
+`CLOUDFLARE_API_TOKEN` is required to be set with your Cloudflare API token.
 
 ### Systemd
 
@@ -55,7 +17,7 @@ Description=Update the DNS with the new public IP.
 
 [Service]
 Type=simple
-ExecStart=/path/to/update-dns
+ExecStart=/path/to/update-dns --domain ${DOMAIN}
 
 [Install]
 WantedBy=multi-user.target
